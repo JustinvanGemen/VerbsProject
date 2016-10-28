@@ -19,6 +19,6 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		rigidBody.velocity = playerInput.GetInput * speed;
+		rigidBody.velocity = playerInput.GetMovementInput * speed;
 	}
 }
