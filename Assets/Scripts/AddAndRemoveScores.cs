@@ -8,9 +8,4 @@ public class AddAndRemoveScores : MonoBehaviour {
 	void Start () {
         score = 0;
 	}
-
-    /*public void ChangeScore(int pointsAmount)
-    {
-        score = score + pointsAmount;
-    }*/	
 }
