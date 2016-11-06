@@ -4,10 +4,11 @@ using System.Collections;
 public class PlayerInputController : MonoBehaviour {
 
 	private Vector3 movement;
-	private bool eat = false;
 	private float moveHorizontal;
 	private float moveVertical;
 	private bool canMove = true;
+	private bool eat = false;
+	private bool pause = false;
 
 	void FixedUpdate()
 	{
@@ -24,13 +25,17 @@ public class PlayerInputController : MonoBehaviour {
 		}
 
 		if(Input.GetAxis("Eat") != 0)
-		{
-			eat = true;
-		}
+		{ eat = true; }
 		else
-		{
-			eat = false;
-		}
+		{ eat = false; }
+	}
+
+	void Update()
+	{
+		if(Input.GetButtonDown("Pause"))
+		{ pause = true; }
+		else
+		{ pause = false; }
 	}
 
 	public Vector3 GetMovementInput
@@ -42,6 +47,12 @@ public class PlayerInputController : MonoBehaviour {
 	{
 		get{return eat;}
 	}
+
+	public bool GetPauseInput
+	{
+		get{return pause;}
+	}
+
 	public bool SwitchMovement
 	{
 		set

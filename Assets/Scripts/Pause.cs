@@ -5,6 +5,8 @@ public class Pause : MonoBehaviour {
 
     private MenuScript menuScript;  //import menuscript as var.
 
+	[SerializeField]
+	private PlayerInputController playerInput;
 
     void Start()
     {
@@ -13,13 +15,14 @@ public class Pause : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) //wait till keycode p or escape gets pressed then do the Paused() function.
+		if (playerInput.GetPauseInput) //wait till keycode p or escape gets pressed then do the Paused() function.
         {
+			print ("auw");
             Paused();
         } 
 	}
 
-    public void Paused()  //test what the timeScale is, if it is 0 go to the first function, if its 1 go to the 2nd.
+    void Paused()  //test what the timeScale is, if it is 0 go to the first function, if its 1 go to the 2nd.
     {
         if (Time.timeScale == 0) 
         {

@@ -6,9 +6,15 @@ public class CountDown : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject[] countDownNumbers;
+	[SerializeField]
+	private PlayerInputController playerInput;
+	[SerializeField]
+	private EnemyMovement enemyInput;
 
 	void Start () {
 		StartCoroutine (CountDownCounter());
+		playerInput.SwitchMovement = false;
+		enemyInput.SwitchMovement = false;
 	}
 
 	private IEnumerator CountDownCounter()
@@ -19,6 +25,8 @@ public class CountDown : MonoBehaviour {
 			yield return new WaitForSeconds (1f);
 			countDownNumbers [i].SetActive(false);
 		}
+		playerInput.SwitchMovement = true;
+		enemyInput.SwitchMovement = true;
 		StopCoroutine (CountDownCounter ());
 	}
 }

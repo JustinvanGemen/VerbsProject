@@ -2,12 +2,16 @@
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
-
-
-
+	
 	private NavMeshAgent _navMeshAgent;
 	private GameObject _playerObj;
+	private bool canMove;
 
+	public bool SwitchMovement
+	{
+		set
+		{ canMove = value; }
+	}
 
 	// Use this for initialization
 	void Awake () 
@@ -18,7 +22,12 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		_navMeshAgent.SetDestination (_playerObj.transform.position);
-		transform.LookAt (_playerObj.transform.position);
+
+		if(canMove)
+		{
+			_navMeshAgent.SetDestination (_playerObj.transform.position);
+			transform.LookAt (_playerObj.transform.position);
+		}
+
 	}
 }
