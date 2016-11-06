@@ -8,11 +8,12 @@ public class ImageFadeAnimation : MonoBehaviour {
 
 	void Start()
 	{
-		image = GetComponent<Image> ();
+		OnEnable ();
 	}
 
 	void OnEnable()
 	{
+		image = GetComponent<Image> ();
 		colorOfImage = image.color;
 		colorOfImage.a = 0;
 		image.color = colorOfImage;

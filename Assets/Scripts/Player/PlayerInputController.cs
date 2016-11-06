@@ -7,13 +7,21 @@ public class PlayerInputController : MonoBehaviour {
 	private bool eat = false;
 	private float moveHorizontal;
 	private float moveVertical;
+	private bool canMove = true;
 
 	void FixedUpdate()
 	{
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		moveVertical = Input.GetAxis ("Vertical");
 
-		movement = new Vector3 (moveHorizontal, 0, moveVertical);
+		if(canMove == true)
+		{
+			movement = new Vector3 (moveHorizontal, 0, moveVertical);
+		}
+		else
+		{
+			movement = new Vector3 (0, 0, 0);
+		}
 
 		if(Input.GetAxis("Eat") != 0)
 		{
@@ -33,5 +41,10 @@ public class PlayerInputController : MonoBehaviour {
 	public bool GetEatInput
 	{
 		get{return eat;}
+	}
+	public bool SwitchMovement
+	{
+		set
+		{ canMove = value; }
 	}
 }

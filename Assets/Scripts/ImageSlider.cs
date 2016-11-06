@@ -6,12 +6,16 @@ public class ImageSlider : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject[] images;
+
+	[SerializeField]
+	private Slider slider;
+
 	private int counter = 0;
 
 	// Use this for initialization
 	void Start ()
 	{
-		
+		StartCoroutine ("AutoScroller");
 	}
 	
 	// Update is called once per frame
@@ -33,6 +37,7 @@ public class ImageSlider : MonoBehaviour {
 	public void Forwards()
 	{
 		counter++;
+
 		if(counter > images.Length -1)
 		{
 			counter = 0;
@@ -50,6 +55,13 @@ public class ImageSlider : MonoBehaviour {
 			{
 				images [i].SetActive(true);
 			}
+		}
+	}
+
+	IEnumerator AutoScroller(){
+		while (true) {
+			yield return new WaitForSeconds (5f);
+			Forwards ();
 		}
 	}
 }

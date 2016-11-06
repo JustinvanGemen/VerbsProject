@@ -5,27 +5,20 @@ public class PlayerEat : MonoBehaviour {
 
 	[SerializeField]
 	private PlayerInputController playerInput;
-
-	private PlayerMovement playerMovement;
-
-	// Use this for initialization
-	void Start ()
-	{
-		playerMovement = GetComponent<PlayerMovement>();
-	}
 	
 	// Update is called once per frame
-	void Update ()
+	void OnTriggerStay (Collider other)
 	{
-		if (playerInput.GetEatInput)
+		if (playerInput.GetEatInput && other.CompareTag("Food"))
 		{
 			StartCoroutine ("Eat");
+			Destroy (other.gameObject);
 		}
 	}
 	IEnumerator Eat()
 	{
-		playerMovement.enabled = false;
-		yield return new WaitForSeconds (4f);
-		playerMovement.enabled = true;
+		playerInput.SwitchMovement = false;
+		yield return new WaitForSeconds (1f);
+		playerInput.SwitchMovement = true;
 	}
 }
