@@ -13,7 +13,6 @@ public class CountDown : MonoBehaviour {
 
 	private IEnumerator CountDownCounter()
 	{
-		print ("countdown");
 		for(int i = 0; i < countDownNumbers.Length; i++)
 		{
 			countDownNumbers [i].SetActive(true);
