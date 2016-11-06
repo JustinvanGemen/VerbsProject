@@ -5,20 +5,20 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour {
 
 	[SerializeField]
-	private Text[] countDownNumbers;
+	private GameObject[] countDownNumbers;
 
-	// Use this for initialization
 	void Start () {
 		StartCoroutine (CountDownCounter());
 	}
 
 	private IEnumerator CountDownCounter()
 	{
+		print ("countdown");
 		for(int i = 0; i < countDownNumbers.Length; i++)
 		{
-			countDownNumbers [i].enabled = true;
+			countDownNumbers [i].SetActive(true);
 			yield return new WaitForSeconds (1f);
-			countDownNumbers [i].enabled = false;
+			countDownNumbers [i].SetActive(false);
 		}
 		StopCoroutine (CountDownCounter ());
 	}

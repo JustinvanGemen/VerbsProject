@@ -15,15 +15,15 @@ public class TextFadeAnimation : MonoBehaviour {
 	{
 		text = GetComponent<Text> ();
 		colorOfImage = text.color;
-		colorOfImage.a = 0;
+		colorOfImage.a = 1;
 		text.color = colorOfImage;
 		StartCoroutine(FadeDelay());
 	}
 
 	private IEnumerator FadeDelay(){
-		while(text.color.a < 1)
+		while(text.color.a > 0)
 		{
-			colorOfImage.a += 0.1f;
+			colorOfImage.a -= 0.05f;
 			text.color = colorOfImage;
 			yield return new WaitForSeconds(0.1f); 	
 		}
