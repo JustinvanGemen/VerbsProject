@@ -4,13 +4,15 @@ using System.Collections;
 public class GameOver : MonoBehaviour {
 
 	[SerializeField]
-	private SceneChanger sceneChanger;
+	private CanvasSwitcher changeMenu;
+	[SerializeField]
+	private GameObject canvas;
 
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.CompareTag("Player"))
 		{
-			sceneChanger.ChangeScene (2);
+			changeMenu.ScreenUpdate(canvas);
 		}
 	}
 }
