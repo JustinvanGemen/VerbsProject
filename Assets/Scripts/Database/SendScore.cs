@@ -21,7 +21,7 @@ public class SendScore : MonoBehaviour {
 	}
 
 	public IEnumerator EnterEndScore (int score, string playerID) {
-		score_url = "http://jvdwijk.com/Games/Verbs/database.php" + "?id=" + playerID + "&score=" + score;
+		score_url = "http://jvdwijk.com/Games/Verbs/database.php" + "?Name=" + playerID + "&Score=" + score;
         webRequest = new WWW(score_url);
         yield return webRequest;
     }
