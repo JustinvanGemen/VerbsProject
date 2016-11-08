@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour {
 	private Rigidbody rigidBody;
 
 	[SerializeField]
+	private AudioSource run;
+
+	[SerializeField]
 	private PlayerInputController playerInput;
 
 	// Use this for initialization
@@ -20,5 +23,13 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		rigidBody.velocity = playerInput.GetMovementInput * speed;
+		if(playerInput.GetMovementInput !=  new Vector3(0,0,0))
+		{
+			run.Play ();
+		}
+		else
+		{
+			run.Pause ();
+		}
 	}
 }
