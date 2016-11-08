@@ -24,7 +24,7 @@ public class PlayerInputController : MonoBehaviour {
 			movement = new Vector3 (0, 0, 0);
 		}
 
-		if(Input.GetAxis("Eat") != 0)
+		if(Input.GetButtonDown("Eat"))
 		{ eat = true; }
 		else
 		{ eat = false; }

@@ -17,12 +17,11 @@ public class Pause : MonoBehaviour {
 	void Update () {
 		if (playerInput.GetPauseInput) //wait till keycode p or escape gets pressed then do the Paused() function.
         {
-			print ("auw");
             Paused();
         } 
 	}
 
-    void Paused()  //test what the timeScale is, if it is 0 go to the first function, if its 1 go to the 2nd.
+    public void Paused()  //test what the timeScale is, if it is 0 go to the first function, if its 1 go to the 2nd.
     {
         if (Time.timeScale == 0) 
         {

@@ -6,12 +6,18 @@ public class PlayerEat : MonoBehaviour {
 	[SerializeField]
 	private PlayerInputController playerInput;
 	private GameObject tempFood;
+	[SerializeField]
+	private AddAndRemoveScores addRemoveScore;
 	
 	// Update is called once per frame
 	void OnTriggerStay (Collider other)
 	{
 		if (playerInput.GetEatInput && other.CompareTag("Food"))
 		{
+			if(other.name == "Cake")
+			{
+				addRemoveScore.Score = 10;
+			}
 			tempFood = other.gameObject;
 			StartCoroutine ("Eat");
 		}
