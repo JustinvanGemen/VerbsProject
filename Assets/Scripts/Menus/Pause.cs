@@ -3,14 +3,15 @@ using System.Collections;
 //Joey vd Wijk
 public class Pause : MonoBehaviour {
 
-    private MenuScript menuScript;  //import menuscript as var.
+	private CanvasSwitcher canvasSwitcher;  //import menuscript as var.
+	private GameObject enabledCanvas;
 
 	[SerializeField]
 	private PlayerInputController playerInput;
 
     void Start()
     {
-        menuScript = GetComponent<MenuScript>();  //instantiate menuscript.
+		canvasSwitcher = GetComponent<CanvasSwitcher>();  //instantiate menuscript.
     }
 	
 	// Update is called once per frame
@@ -26,14 +27,14 @@ public class Pause : MonoBehaviour {
         if (Time.timeScale == 0) 
         {
             Time.timeScale = 1;  //set the timeScale to 1 (turn it back to normal speed)
-			GameObject uiCanvas = menuScript.getCanvas(0); // make a new var for the ui canvas.
-            menuScript.ScreenUpdate(uiCanvas); // turn the normal game UI back on.
+			enabledCanvas = canvasSwitcher.getCanvas(0); // make a new var for the ui canvas.
+			canvasSwitcher.ScreenUpdate(enabledCanvas); // turn the normal game UI back on.
         }
         else if (Time.timeScale == 1)
         {
             Time.timeScale = 0; //pause the game.
-			GameObject pauseCanvas = menuScript.getCanvas(1); //make a new var for the pause menu.
-            menuScript.ScreenUpdate(pauseCanvas); //enable the pause menu, disable the game UI.
+			enabledCanvas = canvasSwitcher.getCanvas(1); //make a new var for the pause menu.
+			canvasSwitcher.ScreenUpdate(enabledCanvas); //enable the pause menu, disable the game UI.
         }
     }
 }

@@ -6,10 +6,11 @@ public class SendScore : MonoBehaviour {
     	
 	private AddAndRemoveScores addAndRemoveScores;
 	private int score;
+	private string score_url;
+	private WWW webRequest;
 
 	public void EnterScore(InputField winnerName)
 	{
-		Debug.Log(winnerName.text);
 		if(gameObject != null)
 		{
 			addAndRemoveScores = GetComponent<AddAndRemoveScores>();
@@ -20,8 +21,8 @@ public class SendScore : MonoBehaviour {
 	}
 
 	public IEnumerator EnterEndScore (int score, string playerID) {
-		string score_url = "http://jvdwijk.com/Games/Verbs/database.php" + "?id=" + playerID + "&score=" + score;
-        WWW webRequest = new WWW(score_url);
+		score_url = "http://jvdwijk.com/Games/Verbs/database.php" + "?id=" + playerID + "&score=" + score;
+        webRequest = new WWW(score_url);
         yield return webRequest;
     }
 }

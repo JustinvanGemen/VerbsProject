@@ -3,12 +3,11 @@ using System.Collections;
 using UnityEngine.UI; //import to use UI (mostly to enable and disable canvasses)
 
 //Joey vd Wijk
-public class MenuScript : MonoBehaviour
+public class CanvasSwitcher : MonoBehaviour
 {
-
     [SerializeField]
 	private GameObject[] menus; //always put in the main menu first!
-	public GameObject getCanvas(int i) //getter for a pause menu.
+	public GameObject getCanvas(int i) //getter for a pause menu. //docent vragen
     {
             return menus[i];
     }

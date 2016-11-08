@@ -3,11 +3,13 @@ using System.Collections;
 
 public class RetrieveScores : MonoBehaviour {
     private string[] highScores;
+	private WWW dataInformation;
+	private string textData;
         
     IEnumerator Start () {
-        WWW dataInformation = new WWW("link");
+        dataInformation = new WWW("link");
         yield return dataInformation;
-        string textData = dataInformation.text;
+        textData = dataInformation.text;
         highScores = textData.Split(";"[0]);
     }
 }
