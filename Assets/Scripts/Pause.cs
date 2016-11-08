@@ -26,13 +26,13 @@ public class Pause : MonoBehaviour {
         if (Time.timeScale == 0) 
         {
             Time.timeScale = 1;  //set the timeScale to 1 (turn it back to normal speed)
-            Canvas uiCanvas = menuScript.getCanvas(0); // make a new var for the ui canvas.
+			GameObject uiCanvas = menuScript.getCanvas(0); // make a new var for the ui canvas.
             menuScript.ScreenUpdate(uiCanvas); // turn the normal game UI back on.
         }
         else if (Time.timeScale == 1)
         {
             Time.timeScale = 0; //pause the game.
-            Canvas pauseCanvas = menuScript.getCanvas(1); //make a new var for the pause menu.
+			GameObject pauseCanvas = menuScript.getCanvas(1); //make a new var for the pause menu.
             menuScript.ScreenUpdate(pauseCanvas); //enable the pause menu, disable the game UI.
         }
     }
