@@ -12,15 +12,9 @@ public class ImageSlider : MonoBehaviour {
 
 	private int counter = 0;
 
-	// Use this for initialization
 	void Start ()
 	{
 		StartCoroutine ("AutoScroller");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void Backwards()
@@ -58,7 +52,7 @@ public class ImageSlider : MonoBehaviour {
 		}
 	}
 
-	IEnumerator AutoScroller(){
+	private IEnumerator AutoScroller(){
 		while (true) {
 			yield return new WaitForSeconds (5f);
 			Forwards ();

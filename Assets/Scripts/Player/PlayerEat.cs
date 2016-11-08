@@ -22,7 +22,7 @@ public class PlayerEat : MonoBehaviour {
 			StartCoroutine ("Eat");
 		}
 	}
-	IEnumerator Eat()
+	private IEnumerator Eat()
 	{
 		playerInput.SwitchMovement = false;
 		yield return new WaitForSeconds (1f);

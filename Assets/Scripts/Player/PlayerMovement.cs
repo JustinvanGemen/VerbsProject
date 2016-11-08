@@ -12,14 +12,11 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField]
 	private PlayerInputController playerInput;
 
-	// Use this for initialization
 	void Start ()
 	{
 		rigidBody = GetComponent<Rigidbody> ();
 	}
-
-
-	// Update is called once per frame
+		
 	void FixedUpdate ()
 	{
 		rigidBody.velocity = playerInput.GetMovementInput * speed;

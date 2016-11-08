@@ -14,7 +14,7 @@ public class TargetFollow : MonoBehaviour
     }
 
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         transform.position = target.position + offset;
     }
