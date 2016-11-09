@@ -7,12 +7,18 @@ public class GameOver : MonoBehaviour {
 	private CanvasSwitcher changeMenu;
 	[SerializeField]
 	private GameObject canvas;
+	[SerializeField]
+	private PlayerMovement playerMovement;
+	[SerializeField]
+	private Pause pause;
 
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.CompareTag("Player"))
 		{
 			changeMenu.ScreenUpdate(canvas);
+			playerMovement.enabled = false;
+			pause.enabled = false;
 		}
 	}
 }

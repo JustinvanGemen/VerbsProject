@@ -9,6 +9,8 @@ public class CanvasSwitcher : MonoBehaviour
 	private GameObject[] menus; //always put in the main menu first!
 	public GameObject getCanvas(int i) //getter for a pause menu. //docent vragen
     {
+
+
             return menus[i];
     }
 

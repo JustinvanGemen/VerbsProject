@@ -11,6 +11,6 @@ public class ScoreHolder : MonoBehaviour {
 	private AddAndRemoveScores score;
 
 	void Update () {
-		text.text = "Score: " + score.Score.ToString();
+		text.text = score.Score.ToString();
 	}
 }

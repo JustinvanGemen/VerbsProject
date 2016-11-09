@@ -16,6 +16,7 @@ public class PlayerEat : MonoBehaviour {
 		{
 			if(other.name == "Cake")
 			{
+				other.name = "Eaten";
 				addRemoveScore.Score = 10;
 			}
 			tempFood = other.gameObject;
