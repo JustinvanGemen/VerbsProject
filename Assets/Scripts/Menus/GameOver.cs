@@ -8,17 +8,23 @@ public class GameOver : MonoBehaviour {
 	[SerializeField]
 	private GameObject canvas;
 	[SerializeField]
-	private PlayerMovement playerMovement;
+	private PlayerInputController playerInput;
+	private int tempScore;
 	[SerializeField]
-	private Pause pause;
+	private AddAndRemoveScores removeScore;
 
 	void OnTriggerEnter (Collider other)
 	{
 		if(other.CompareTag("Player"))
 		{
+			if(gameObject.CompareTag("Enemy"))
+			{
+				tempScore = removeScore.Score;
+				tempScore /= 4;
+				removeScore.Score = -tempScore;
+			}
 			changeMenu.ScreenUpdate(canvas);
-			playerMovement.enabled = false;
-			pause.enabled = false;
+			playerInput.enabled = false;
 		}
 	}
 }
