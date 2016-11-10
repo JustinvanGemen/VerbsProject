@@ -8,29 +8,37 @@ public class PlayerEat : MonoBehaviour {
 	private GameObject tempFood;
 	[SerializeField]
 	private AddAndRemoveScores addRemoveScore;
+	private string Food;
 	
 	// Update is called once per frame
 	void OnTriggerStay (Collider other)
 	{
-		if (playerInput.GetEatInput && other.CompareTag("Food"))
+		if(playerInput.GetEatInput && other.CompareTag("Food"))
 		{
-			if(other.name == "Cake")
+			switch (other.name)
 			{
-				other.name = "Eaten";
+			case "Cake":
 				addRemoveScore.Score = 10;
+				break;
+			case "Banana":
+				addRemoveScore.Score = -15;
+				break;
+			case"DragonFruit":
+				addRemoveScore.Score = -5;
+				break;
+			case"Waffle":
+				addRemoveScore.Score = 5;
+				break;
+			case"IceCream":
+				addRemoveScore.Score = 15;
+				break;
+			case"Hamburger":
+				addRemoveScore.Score = 20;
+				break;
 			}
+			other.name = "Eaten";
 			tempFood = other.gameObject;
 			StartCoroutine ("Eat");
-		}
-		if(other.name == "Bannana")
-		{
-			other.name = "Eaten";
-			addRemoveScore.Score = -15;
-		}
-		if(other.name == "DragonFruit")
-		{
-			other.name = "Eaten";
-			addRemoveScore.Score = -5;
 		}
 	}
 	private IEnumerator Eat()
