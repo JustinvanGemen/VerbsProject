@@ -20,11 +20,11 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		rigidBody.velocity = playerInput.GetMovementInput * speed;
-		if(playerInput.GetMovementInput !=  new Vector3(0,0,0))
+		if(playerInput.GetMovementInput !=  new Vector3(0,0,0) && run.isPlaying == false)
 		{
 			run.Play ();
 		}
-		else
+		else if(playerInput.GetMovementInput ==  new Vector3(0,0,0))
 		{
 			run.Pause ();
 		}

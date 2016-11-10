@@ -22,6 +22,16 @@ public class PlayerEat : MonoBehaviour {
 			tempFood = other.gameObject;
 			StartCoroutine ("Eat");
 		}
+		if(other.name == "Bannana")
+		{
+			other.name = "Eaten";
+			addRemoveScore.Score = -15;
+		}
+		if(other.name == "DragonFruit")
+		{
+			other.name = "Eaten";
+			addRemoveScore.Score = -5;
+		}
 	}
 	private IEnumerator Eat()
 	{
