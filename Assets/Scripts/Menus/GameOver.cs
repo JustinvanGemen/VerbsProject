@@ -7,8 +7,6 @@ public class GameOver : MonoBehaviour {
 	private CanvasSwitcher changeMenu;
 	[SerializeField]
 	private GameObject canvas;
-	[SerializeField]
-	private PlayerInputController playerInput;
 	private int tempScore;
 	[SerializeField]
 	private AddAndRemoveScores removeScore;
@@ -20,11 +18,11 @@ public class GameOver : MonoBehaviour {
 			if(gameObject.CompareTag("Enemy"))
 			{
 				tempScore = removeScore.Score;
-				tempScore /= 4;
+				tempScore /= 3;
 				removeScore.Score = -tempScore;
 			}
 			changeMenu.ScreenUpdate(canvas);
-			playerInput.enabled = false;
+			Time.timeScale = 0;
 		}
 	}
 }

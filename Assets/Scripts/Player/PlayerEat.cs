@@ -9,6 +9,8 @@ public class PlayerEat : MonoBehaviour {
 	[SerializeField]
 	private AddAndRemoveScores addRemoveScore;
 	private string Food;
+	[SerializeField]
+	private AudioSource eat;
 	
 	// Update is called once per frame
 	void OnTriggerStay (Collider other)
@@ -43,6 +45,7 @@ public class PlayerEat : MonoBehaviour {
 	}
 	private IEnumerator Eat()
 	{
+		eat.Play ();
 		playerInput.SwitchMovement = false;
 		yield return new WaitForSeconds (1f);
 		Destroy (tempFood);

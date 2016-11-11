@@ -24,9 +24,5 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			run.Play ();
 		}
-		else if(playerInput.GetMovementInput ==  new Vector3(0,0,0))
-		{
-			run.Pause ();
-		}
 	}
 }

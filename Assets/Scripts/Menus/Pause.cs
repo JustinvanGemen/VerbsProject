@@ -29,12 +29,14 @@ public class Pause : MonoBehaviour {
             Time.timeScale = 1;  //set the timeScale to 1 (turn it back to normal speed)
 			enabledCanvas = canvasSwitcher.getCanvas(0); // make a new var for the ui canvas.
 			canvasSwitcher.ScreenUpdate(enabledCanvas); // turn the normal game UI back on.
+			AudioListener.pause = false;
         }
         else if (Time.timeScale == 1)
         {
             Time.timeScale = 0; //pause the game.
 			enabledCanvas = canvasSwitcher.getCanvas(1); //make a new var for the pause menu.
 			canvasSwitcher.ScreenUpdate(enabledCanvas); //enable the pause menu, disable the game UI.
+			AudioListener.pause = true;
         }
     }
 }
