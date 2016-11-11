@@ -5,7 +5,7 @@ public class EnemyMovement : MonoBehaviour {
 	
 	private NavMeshAgent navMeshAgent;
 	private GameObject playerObj;
-	private bool canMove;
+	private bool canMove = true;
 
 	public bool SwitchMovement
 	{
@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour {
 		{ canMove = value; }
 	}
 
-	void Awake () 
+	void Start () 
 	{
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		playerObj = GameObject.FindGameObjectWithTag ("Player");
