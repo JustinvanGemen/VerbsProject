@@ -9,7 +9,7 @@ public class FoodGenerator : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] spawnPoints;
 	private List<GameObject> tempSpawnPoints = new List<GameObject>();
-	private int plateAmount = 8;
+	private int plateAmount = 30;
 	private GameObject foodPlate;
 
 	void Start ()
