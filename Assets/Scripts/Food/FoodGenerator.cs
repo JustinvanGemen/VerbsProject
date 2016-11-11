@@ -21,17 +21,15 @@ public class FoodGenerator : MonoBehaviour {
 	{
 		tempSpawnPoints.Clear ();
 
-		for (int i = 0; i < spawnPoints.Length; i++)
-		{
+		for (int i = 0; i < spawnPoints.Length; i++) {
 			tempSpawnPoints.Add (spawnPoints [i]);
 		}
 
-		for (int i = 0; i < plateAmount; i++)
-		{
-			foodPlate = Instantiate(foodSort[Random.Range (0, foodSort.Length)]);
+		for (int i = 0; i < plateAmount; i++) {
+			foodPlate = Instantiate (foodSort [Random.Range (0, foodSort.Length)]);
 			int number = Random.Range (0, tempSpawnPoints.Count);
 			foodPlate.transform.position = tempSpawnPoints [number].transform.position;
-			tempSpawnPoints.Remove(tempSpawnPoints [number]);
+			tempSpawnPoints.Remove (tempSpawnPoints [number]);
 		}
 	}
 }
