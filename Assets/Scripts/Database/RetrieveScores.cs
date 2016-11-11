@@ -15,21 +15,21 @@ public class RetrieveScores : MonoBehaviour {
 		StartCoroutine (HighscoreDisplay ());
 	}
 
-	IEnumerator HighscoreDisplay()
+	private IEnumerator HighscoreDisplay()
 	{
 		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/");
 		yield return dataInformation;
 		textData = dataInformation.text;
 
 		highScores = textData.Split(";"[0]);
-		text.text = "1: " + highScores[0] + "\n2: " + highScores[1] + "\n3: " + highScores[2] + "\n4: " + highScores[3] + "\n5: " + highScores[4];
+		text.text = "1: " + highScores[0] + "\n\n2: " + highScores[1] + "\n\n3: " + highScores[2] + "\n\n4: " + highScores[3] + "\n\n5: " + highScores[4];
 	}
 
 	public void SearchScoreStart(InputField givenName){
 		StartCoroutine (SearchScore (givenName.text));
 	}
 
-	IEnumerator SearchScore(string givenName)
+	private IEnumerator SearchScore(string givenName)
 	{
 		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
 		yield return dataInformation;

@@ -13,8 +13,7 @@ public class Pause : MonoBehaviour {
     {
 		canvasSwitcher = GetComponent<CanvasSwitcher>();  //instantiate menuscript.
     }
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (playerInput.GetPauseInput) //wait till keycode p or escape gets pressed then do the Paused() function.
         {

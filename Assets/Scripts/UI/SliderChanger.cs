@@ -11,13 +11,11 @@ public class SliderChanger : MonoBehaviour {
 	private float newSliderValue;
 	private float oldSliderValue;
 
-	// Use this for initialization
 	void Start ()
 	{
 		slider = GetComponent<Slider> ();
 	}
-	
-	// Update is called once per frame
+
 	public void ValueChange ()
 	{
 		newSliderValue = slider.value;

@@ -11,8 +11,7 @@ public class PlayerEat : MonoBehaviour {
 	private string Food;
 	[SerializeField]
 	private AudioSource eat;
-	
-	// Update is called once per frame
+
 	void OnTriggerStay (Collider other)
 	{
 		if(playerInput.GetEatInput && other.CompareTag("Food"))
