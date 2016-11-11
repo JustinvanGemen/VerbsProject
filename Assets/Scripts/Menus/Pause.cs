@@ -11,6 +11,7 @@ public class Pause : MonoBehaviour {
 
     void Start()
     {
+		Time.timeScale = 1;
 		canvasSwitcher = GetComponent<CanvasSwitcher>();  //instantiate menuscript.
     }
 
