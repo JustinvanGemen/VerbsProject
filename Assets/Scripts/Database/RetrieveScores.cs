@@ -19,7 +19,6 @@ public class RetrieveScores : MonoBehaviour {
 	{
 		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/");
 		yield return dataInformation;
-		Debug.Log (dataInformation.text);
 		textData = dataInformation.text;
 
 		highScores = textData.Split(";"[0]);
@@ -35,9 +34,8 @@ public class RetrieveScores : MonoBehaviour {
 		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
 		yield return dataInformation;
 		textData = dataInformation.text;
-		print(dataInformation.text);
 		highScores = textData.Split(";"[0]);
-		text.text = "1 : " + highScores[0] + "\n2: " + highScores[1] + "\n3: " + highScores[2] + "\n4: " + highScores[3] + "\n5: " + highScores[4];
+		text.text = "1 : " + highScores[0] + "\n\n2: " + highScores[1] + "\n\n3: " + highScores[2] + "\n\n4: " + highScores[3] + "\n\n5: " + highScores[4];
 
 	}
 }
