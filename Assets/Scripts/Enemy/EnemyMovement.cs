@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour {
+namespace Enemy
+{
+	public class EnemyMovement : MonoBehaviour {
 	
-	private NavMeshAgent navMeshAgent;
-	private GameObject playerObj;
-	private bool canMove = true;
+		private NavMeshAgent _navMeshAgent;
+		private GameObject _playerObj;
+		private bool _canMove = true;
 
-	public bool SwitchMovement
-	{
-		set
-		{ canMove = value; }
-	}
-
-	void Start () 
-	{
-		navMeshAgent = GetComponent<NavMeshAgent> ();
-		playerObj = GameObject.FindGameObjectWithTag ("Player");
-	}
-
-	void Update () {
-
-		if(canMove)
+		public bool SwitchMovement
 		{
-			navMeshAgent.SetDestination (playerObj.transform.position);
-			transform.LookAt (playerObj.transform.position);
+			set
+			{ _canMove = value; }
 		}
 
+		private void Start () 
+		{
+			_navMeshAgent = GetComponent<NavMeshAgent> ();
+			_playerObj = GameObject.FindGameObjectWithTag ("Player");
+		}
+
+		private void Update () {
+			if (!_canMove) return;
+			_navMeshAgent.SetDestination (_playerObj.transform.position);
+			transform.LookAt (_playerObj.transform.position);
+		}
 	}
 }

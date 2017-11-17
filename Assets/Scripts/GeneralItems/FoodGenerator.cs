@@ -1,35 +1,36 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class FoodGenerator : MonoBehaviour {
+namespace GeneralItems
+{
+	public class FoodGenerator : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject[] foodSort;
-	[SerializeField]
-	private GameObject[] spawnPoints;
-	private List<GameObject> tempSpawnPoints = new List<GameObject>();
-	private int plateAmount = 30;
-	private GameObject foodPlate;
+		[SerializeField] private GameObject[] _foodSort;
+		[SerializeField] private GameObject[] _spawnPoints;
+		[SerializeField] private const int MaxPlateAmount = 30;
+		private readonly List<GameObject> _tempSpawnPoints = new List<GameObject>();
+		private GameObject _foodPlate;
 
-	void Start ()
-	{
-		InvokeRepeating("GenerateFood", 0f, 90f);
-	}
-
-	void GenerateFood ()
-	{
-		tempSpawnPoints.Clear ();
-
-		for (int i = 0; i < spawnPoints.Length; i++) {
-			tempSpawnPoints.Add (spawnPoints [i]);
+		private void Start ()
+		{
+			InvokeRepeating("GenerateFood", 0f, 90f);
 		}
 
-		for (int i = 0; i < plateAmount; i++) {
-			foodPlate = Instantiate (foodSort [Random.Range (0, foodSort.Length)]);
-			int number = Random.Range (0, tempSpawnPoints.Count);
-			foodPlate.transform.position = tempSpawnPoints [number].transform.position;
-			tempSpawnPoints.Remove (tempSpawnPoints [number]);
+		private void GenerateFood ()
+		{
+			_tempSpawnPoints.Clear ();
+
+			foreach (var t in _spawnPoints)
+			{
+				_tempSpawnPoints.Add (t);
+			}
+
+			for (var i = 0; i < MaxPlateAmount; i++) {
+				_foodPlate = Instantiate (_foodSort [Random.Range (0, _foodSort.Length)]);
+				var number = Random.Range (0, _tempSpawnPoints.Count);
+				_foodPlate.transform.position = _tempSpawnPoints [number].transform.position;
+				_tempSpawnPoints.Remove (_tempSpawnPoints [number]);
+			}
 		}
 	}
 }

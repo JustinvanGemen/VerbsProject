@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DestroyObject : MonoBehaviour {
+namespace GeneralItems
+{
+	public class DestroyObject : MonoBehaviour {
 
-	[SerializeField]
-	private float counter;
+		[SerializeField]
+		private float _counter;
 
-	void Start ()
-	{
-		Invoke ("DestroyIt", counter);
-	}
+		private void Start ()
+		{
+			Invoke ("Destroy", _counter);
+		}
 
-	private void DestroyIt ()
-	{
-		Destroy (gameObject);
+		private void Destroy ()
+		{
+			Destroy (gameObject);
+		}
 	}
 }

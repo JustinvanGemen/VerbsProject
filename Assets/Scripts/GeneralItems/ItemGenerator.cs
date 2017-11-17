@@ -1,24 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class ItemGenerator : MonoBehaviour {
+namespace GeneralItems
+{
+	public class ItemGenerator : MonoBehaviour {
 
-	[SerializeField]
-	private float startTime;
-	[SerializeField]
-	private float repeatTime;
-	[SerializeField]
-	private GameObject[] itemSort;
-	[SerializeField]
-	private Transform spawnPoint;
+		[SerializeField]
+		private float _startTime;
+		[SerializeField]
+		private float _repeatTime;
+		[SerializeField]
+		private GameObject[] _itemSort;
+		[SerializeField]
+		private Transform _spawnPoint;
 
-	void Start ()
-	{
-		InvokeRepeating ("GenerateItem", startTime, repeatTime);
-	}
+		private void Start ()
+		{
+			InvokeRepeating ("GenerateItem", _startTime, _repeatTime);
+		}
 	
-	private void GenerateItem ()
-	{
-		Instantiate (itemSort [Random.Range (0, itemSort.Length)], spawnPoint.position, Quaternion.identity);
+		private void GenerateItem ()
+		{
+			Instantiate (_itemSort [Random.Range (0, _itemSort.Length)], _spawnPoint.position, Quaternion.identity);
+		}
 	}
 }

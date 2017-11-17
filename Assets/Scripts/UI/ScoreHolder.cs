@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Database;
 using UnityEngine.UI;
 
 public class ScoreHolder : MonoBehaviour {

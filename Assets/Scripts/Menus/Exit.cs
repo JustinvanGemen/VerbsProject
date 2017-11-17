@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Exit : MonoBehaviour {
+namespace Menus
+{
+	public class Exit : MonoBehaviour {
 
-	public void Quit(){
-		Application.Quit ();
+		public void Quit(){
+			Application.Quit ();
+		}
 	}
 }

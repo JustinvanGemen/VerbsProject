@@ -1,13 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class Rename : MonoBehaviour {
+namespace GeneralItems
+{
+	public class Rename : MonoBehaviour {
 
-	[SerializeField]
-	private string nameOfObject;
+		[SerializeField]
+		private string _nameOfObject;
 
-	void Start ()
-	{
-		gameObject.name = nameOfObject;
+		private void Start ()
+		{
+			gameObject.name = _nameOfObject;
+		}
 	}
 }

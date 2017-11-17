@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class ObjectMovement : MonoBehaviour {
+namespace GeneralItems
+{
+	public class ObjectMovement : MonoBehaviour {
 
-	private Rigidbody rigidBody;
-	[SerializeField]
-	private int speed;
+		private Rigidbody _rigidBody;
+		[SerializeField]
+		private int _speed;
 
-	void Start()
-	{
-		rigidBody = GetComponent<Rigidbody> ();
-	}
-
-	void FixedUpdate ()
-	{
-		rigidBody.MovePosition (transform.position + transform.forward * speed/100);
-	}
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.CompareTag("WayPoint"))
+		private void Start()
 		{
-			transform.Rotate (new Vector3 (0, 90, 0));
+			_rigidBody = GetComponent<Rigidbody> ();
+		}
+
+		private void FixedUpdate ()
+		{
+			_rigidBody.MovePosition (transform.position + transform.forward * _speed/100);
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if(other.CompareTag("WayPoint"))
+			{
+				transform.Rotate (new Vector3 (0, 90, 0));
+			}
 		}
 	}
 }

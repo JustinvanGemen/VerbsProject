@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour {
+namespace Menus
+{
+    public class SceneChanger : MonoBehaviour {
 
-    public void ChangeScene(int scene)
-    {
-        SceneManager.LoadScene(scene);
+        public void ChangeScene(int scene)
+        {
+            SceneManager.LoadScene(scene);
+        }
     }
 }

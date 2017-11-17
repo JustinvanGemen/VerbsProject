@@ -1,41 +1,44 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class RetrieveScores : MonoBehaviour {
-    private string[] highScores;
-	private WWW dataInformation;
-	private string textData;
+namespace Database
+{
+	public class RetrieveScores : MonoBehaviour {
+		private string[] _highScores;
+		private WWW _dataInformation;
+		private string _textData;
 
-	[SerializeField]
-	private Text text;
+		[SerializeField]
+		private Text _text;
        
-	public void HighscoreDisplayStart()
-	{
-		StartCoroutine (HighscoreDisplay ());
-	}
+		public void HighscoreDisplayStart()
+		{
+			StartCoroutine (HighscoreDisplay ());
+		}
 
-	private IEnumerator HighscoreDisplay()
-	{
-		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/");
-		yield return dataInformation;
-		textData = dataInformation.text;
+		private IEnumerator HighscoreDisplay()
+		{
+			_dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/");
+			yield return _dataInformation;
+			_textData = _dataInformation.text;
 
-		highScores = textData.Split(";"[0]);
-		text.text = "1: " + highScores[0] + "\n\n2: " + highScores[1] + "\n\n3: " + highScores[2] + "\n\n4: " + highScores[3] + "\n\n5: " + highScores[4];
-	}
+			_highScores = _textData.Split(";"[0]);
+			_text.text = "1: " + _highScores[0] + "\n\n2: " + _highScores[1] + "\n\n3: " + _highScores[2] + "\n\n4: " + _highScores[3] + "\n\n5: " + _highScores[4];
+		}
 
-	public void SearchScoreStart(InputField givenName){
-		StartCoroutine (SearchScore (givenName.text));
-	}
+		public void SearchScoreStart(InputField givenName){
+			StartCoroutine (SearchScore (givenName.text));
+		}
 
-	private IEnumerator SearchScore(string givenName)
-	{
-		dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
-		yield return dataInformation;
-		textData = dataInformation.text;
-		highScores = textData.Split(";"[0]);
-		text.text = "1 : " + highScores[0] + "\n\n2: " + highScores[1] + "\n\n3: " + highScores[2] + "\n\n4: " + highScores[3] + "\n\n5: " + highScores[4];
+		private IEnumerator SearchScore(string givenName)
+		{
+			_dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
+			yield return _dataInformation;
+			_textData = _dataInformation.text;
+			_highScores = _textData.Split(";"[0]);
+			_text.text = "1 : " + _highScores[0] + "\n\n2: " + _highScores[1] + "\n\n3: " + _highScores[2] + "\n\n4: " + _highScores[3] + "\n\n5: " + _highScores[4];
 
+		}
 	}
 }

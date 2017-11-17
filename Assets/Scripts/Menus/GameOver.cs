@@ -1,27 +1,28 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Database;
+using UnityEngine;
 
-public class GameOver : MonoBehaviour {
+namespace Menus
+{
+	public class GameOver : MonoBehaviour {
 
-	[SerializeField]
-	private CanvasSwitcher changeMenu;
-	[SerializeField]
-	private GameObject canvas;
-	private int tempScore;
-	[SerializeField]
-	private AddAndRemoveScores removeScore;
+		[SerializeField]
+		private CanvasSwitcher _changeMenu;
+		[SerializeField]
+		private GameObject _canvas;
+		private int _tempScore;
+		[SerializeField]
+		private AddAndRemoveScores _removeScore;
 
-	void OnTriggerEnter (Collider other)
-	{
-		if(other.CompareTag("Player"))
+		private void OnTriggerEnter (Collider other)
 		{
+			if (!other.CompareTag("Player")) return;
 			if(gameObject.CompareTag("Enemy"))
 			{
-				tempScore = removeScore.Score;
-				tempScore /= 3;
-				removeScore.Score = -tempScore;
+				_tempScore = _removeScore.Score;
+				_tempScore /= 3;
+				_removeScore.Score = -_tempScore;
 			}
-			changeMenu.ScreenUpdate(canvas);
+			_changeMenu.ScreenUpdate(_canvas);
 			Time.timeScale = 0;
 		}
 	}

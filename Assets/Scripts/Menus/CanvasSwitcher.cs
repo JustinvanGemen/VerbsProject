@@ -1,47 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI; //import to use UI (mostly to enable and disable canvasses)
 
-//Joey vd Wijk
-public class CanvasSwitcher : MonoBehaviour
+namespace Menus
 {
-    [SerializeField]
-	private GameObject[] menus; //always put in the main menu first!
-	public GameObject getCanvas(int i) //getter for a pause menu. //docent vragen
+    public class CanvasSwitcher : MonoBehaviour
     {
-
-
-            return menus[i];
-    }
-
-
-    void Awake()
-    {
-        for (int i = 0; i < menus.Length; i++) //for loop for the menus in the array.
+        [SerializeField]
+        private GameObject[] _menus; //always put in the main menu first!
+        public GameObject GetCanvas(int i) //getter for a pause menu.
         {
-            if(menus[i] != menus[0])  //enable the main menu, the rest will be disabled at the start.
+            return _menus[i];
+        }
+
+
+        private void Awake()
+        {
+            foreach (var t in _menus)
             {
-				menus[i].SetActive (false);
-            }
-            else
-            {
-				menus[i].SetActive (true);
+                t.SetActive(t == _menus[0]); //enable the main menu, the rest will be disabled at the start.
             }
         }
-    }
 
-	public void ScreenUpdate(GameObject menu) //function for enabling another canvas and disabling the others
-    {
-        for (int i = 0; i < menus.Length; i++) //same for loop
+        public void ScreenUpdate(GameObject menu) //function for enabling another canvas and disabling the others
         {
-            if (menus[i].name == menu.name)  //if the menu is the same as the menu requested enbable it, otherwise disable it.
+            foreach (var t in _menus)
             {
-				menus[i].SetActive (true);
+                t.SetActive(t.name == menu.name);
             }
-            else
-            {
-				menus[i].SetActive (false);
-            }
-        }       
+        }
     }
 }
