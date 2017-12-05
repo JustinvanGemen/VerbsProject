@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TargetFollow : MonoBehaviour
+namespace Player
 {
-
-    public Transform target;
-
-    private Vector3 offset;
-
-    void Start()
+    public class TargetFollow : MonoBehaviour
     {
-        offset = transform.position - target.position;
-    }
+
+        public Transform Target;
+
+        private Vector3 _offset;
+
+        private void Start()
+        {
+            _offset = transform.position - Target.position;
+        }
 
 
-    private void LateUpdate()
-    {
-        transform.position = target.position + offset;
+        private void LateUpdate()
+        {
+            transform.position = Target.position + _offset;
+        }
     }
 }

@@ -4,8 +4,7 @@ namespace GeneralItems
 {
 	public class DestroyObject : MonoBehaviour {
 
-		[SerializeField]
-		private float _counter;
+		[SerializeField] private float _counter;
 
 		private void Start ()
 		{

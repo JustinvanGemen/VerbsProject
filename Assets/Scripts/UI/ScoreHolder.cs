@@ -1,17 +1,17 @@
-﻿using UnityEngine;
-using System.Collections;
-using Database;
+﻿using Database;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreHolder : MonoBehaviour {
+namespace UI
+{
+	public class ScoreHolder : MonoBehaviour {
 
-	[SerializeField]
-	private Text text;
+		[SerializeField] private Text _text;
 
-	[SerializeField]
-	private AddAndRemoveScores score;
+		[SerializeField] private AddAndRemoveScores _score;
 
-	void Update () {
-		text.text = score.Score.ToString();
+		private void Update () {
+			_text.text = _score.Score.ToString();
+		}
 	}
 }

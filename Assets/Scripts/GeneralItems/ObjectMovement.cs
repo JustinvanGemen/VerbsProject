@@ -5,8 +5,7 @@ namespace GeneralItems
 	public class ObjectMovement : MonoBehaviour {
 
 		private Rigidbody _rigidBody;
-		[SerializeField]
-		private int _speed;
+		[SerializeField] private int _speed;
 
 		private void Start()
 		{
@@ -20,10 +19,7 @@ namespace GeneralItems
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if(other.CompareTag("WayPoint"))
-			{
-				transform.Rotate (new Vector3 (0, 90, 0));
-			}
+			if(other.CompareTag("WayPoint")) transform.Rotate (new Vector3 (0, 90, 0));
 		}
 	}
 }

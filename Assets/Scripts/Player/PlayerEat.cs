@@ -1,54 +1,52 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using Database;
+using UnityEngine;
 
-public class PlayerEat : MonoBehaviour {
+namespace Player
+{
+	public class PlayerEat : MonoBehaviour {
 
-	[SerializeField]
-	private PlayerInputController playerInput;
-	private GameObject tempFood;
-	[SerializeField]
-	private AddAndRemoveScores addRemoveScore;
-	private string Food;
-	[SerializeField]
-	private AudioSource eat;
+		[SerializeField] private PlayerInputController _playerInput;
+		private GameObject _tempFood;
+		[SerializeField] private AddAndRemoveScores _addRemoveScore;
+		private string _food;
+		[SerializeField] private AudioSource _eat;
 
-	void OnTriggerStay (Collider other)
-	{
-		if(playerInput.GetEatInput && other.CompareTag("Food"))
+		private void OnTriggerStay (Collider other)
 		{
+			if (!_playerInput.GetEatInput || !other.CompareTag("Food")) return;
 			switch (other.name)
 			{
-			case "Cake":
-				addRemoveScore.Score = 10;
-				break;
-			case "Banana":
-				addRemoveScore.Score = -15;
-				break;
-			case"DragonFruit":
-				addRemoveScore.Score = -5;
-				break;
-			case"Waffle":
-				addRemoveScore.Score = 5;
-				break;
-			case"IceCream":
-				addRemoveScore.Score = 15;
-				break;
-			case"Hamburger":
-				addRemoveScore.Score = 20;
-				break;
+				case "Cake":
+					_addRemoveScore.Score = 10;
+					break;
+				case "Banana":
+					_addRemoveScore.Score = -15;
+					break;
+				case"DragonFruit":
+					_addRemoveScore.Score = -5;
+					break;
+				case"Waffle":
+					_addRemoveScore.Score = 5;
+					break;
+				case"IceCream":
+					_addRemoveScore.Score = 15;
+					break;
+				case"Hamburger":
+					_addRemoveScore.Score = 20;
+					break;
 			}
 			other.name = "Eaten";
-			tempFood = other.gameObject;
+			_tempFood = other.gameObject;
 			StartCoroutine ("Eat");
 		}
-	}
-	private IEnumerator Eat()
-	{
-		eat.Play ();
-		playerInput.SwitchMovement = false;
-		yield return new WaitForSeconds (1f);
-		Destroy (tempFood);
-		playerInput.SwitchMovement = true;
+		private IEnumerator Eat()
+		{
+			_eat.Play ();
+			_playerInput.SwitchMovement = false;
+			yield return new WaitForSeconds (1f);
+			Destroy (_tempFood);
+			_playerInput.SwitchMovement = true;
+		}
 	}
 }

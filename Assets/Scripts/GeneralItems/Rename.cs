@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GeneralItems
 {
 	public class Rename : MonoBehaviour {
 
-		[SerializeField]
-		private string _nameOfObject;
+		[SerializeField] private string _nameOfObject;
 
 		private void Start ()
 		{

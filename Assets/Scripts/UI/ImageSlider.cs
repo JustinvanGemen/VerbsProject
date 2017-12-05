@@ -1,61 +1,58 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageSlider : MonoBehaviour {
+namespace UI
+{
+	public class ImageSlider : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject[] images;
+		[SerializeField] private GameObject[] _images;
+		[SerializeField] private Slider _slider;
 
-	[SerializeField]
-	private Slider slider;
+		private int _counter = 0;
 
-	private int counter = 0;
-
-	void Start ()
-	{
-		StartCoroutine ("AutoScroller");
-	}
-
-	public void Backwards()
-	{
-		counter--;
-
-		if(counter < 0)
+		private void Start ()
 		{
-			counter = images.Length - 1;
+			StartCoroutine ("AutoScroller");
 		}
-		DisableImages ();
-	}
 
-	public void Forwards()
-	{
-		counter++;
-
-		if(counter > images.Length -1)
+		public void Backwards()
 		{
-			counter = 0;
-		}
-		DisableImages ();
-	}
+			_counter--;
 
-	private void DisableImages()
-	{
-		for (int i = 0; i < images.Length; i++)
-		{
-			images [i].SetActive(false);
-
-			if(i == counter)
+			if(_counter < 0)
 			{
-				images [i].SetActive(true);
+				_counter = _images.Length - 1;
+			}
+			DisableImages ();
+		}
+
+		public void Forwards()
+		{
+			_counter++;
+
+			if(_counter > _images.Length -1)
+			{
+				_counter = 0;
+			}
+			DisableImages ();
+		}
+
+		private void DisableImages()
+		{
+			for (var i = 0; i < _images.Length; i++)
+			{
+				_images [i].SetActive(false);
+				if(i != _counter) continue;
+				_images [i].SetActive(true);
 			}
 		}
-	}
 
-	private IEnumerator AutoScroller(){
-		while (true) {
-			yield return new WaitForSeconds (5f);
-			Forwards ();
+		private IEnumerator AutoScroller(){
+			while (true) {
+				yield return new WaitForSeconds (5f);
+				Forwards ();
+			}
 		}
 	}
 }

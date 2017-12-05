@@ -1,33 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using Enemy;
-using UnityEngine.UI;
+using Player;
+using UnityEngine;
 
-public class CountDown : MonoBehaviour {
+namespace UI
+{
+	public class CountDown : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject[] countDownNumbers;
-	[SerializeField]
-	private PlayerInputController playerInput;
-	[SerializeField]
-	private EnemyMovement enemyInput;
+		[SerializeField] private GameObject[] _countDownNumbers;
+		[SerializeField] private PlayerInputController _playerInput;
+		[SerializeField] private EnemyMovement _enemyInput;
 
-	void Start () {
-		StartCoroutine (CountDownCounter());
-		playerInput.SwitchMovement = false;
-		enemyInput.SwitchMovement = false;
-	}
-
-	private IEnumerator CountDownCounter()
-	{
-		for(int i = 0; i < countDownNumbers.Length; i++)
-		{
-			countDownNumbers [i].SetActive(true);
-			yield return new WaitForSeconds (1f);
-			countDownNumbers [i].SetActive(false);
+		private void Start () {
+			StartCoroutine (CountDownCounter());
+			_playerInput.SwitchMovement = false;
+			_enemyInput.SwitchMovement = false;
 		}
-		playerInput.SwitchMovement = true;
-		enemyInput.SwitchMovement = true;
-		StopCoroutine (CountDownCounter ());
+
+		private IEnumerator CountDownCounter()
+		{
+			foreach (var t in _countDownNumbers)
+			{
+				t.SetActive(true);
+				yield return new WaitForSeconds (1f);
+				t.SetActive(false);
+			}
+			_playerInput.SwitchMovement = true;
+			_enemyInput.SwitchMovement = true;
+			StopCoroutine (CountDownCounter ());
+		}
 	}
 }

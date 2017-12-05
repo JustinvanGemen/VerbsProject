@@ -1,61 +1,42 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class PlayerInputController : MonoBehaviour {
+namespace Player
+{
+	public class PlayerInputController : MonoBehaviour {
+		private float _moveHorizontal;
+		private float _moveVertical;
+		private bool _canMove = true;
 
-	private Vector3 movement;
-	private float moveHorizontal;
-	private float moveVertical;
-	private bool canMove = true;
-	private bool eat = false;
-	private bool pause = false;
-
-	void FixedUpdate()
-	{
-		moveHorizontal = Input.GetAxis ("Horizontal");
-		moveVertical = Input.GetAxis ("Vertical");
-
-		if(canMove == true)
+		public PlayerInputController()
 		{
-			movement = new Vector3 (moveHorizontal, 0, moveVertical);
-		}
-		else
-		{
-			movement = new Vector3 (0, 0, 0);
+			GetPauseInput = false;
+			GetEatInput = false;
 		}
 
-		if(Input.GetButtonDown("Eat"))
-		{ eat = true; }
-		else
-		{ eat = false; }
-	}
+		private void FixedUpdate()
+		{
+			_canMove = true;
+			_moveHorizontal = Input.GetAxis ("Horizontal");
+			_moveVertical = Input.GetAxis ("Vertical");
 
-	void Update()
-	{
-		if(Input.GetButtonDown("Pause"))
-		{ pause = true; }
-		else
-		{ pause = false; }
-	}
+			GetMovementInput = _canMove == true ? new Vector3 (_moveHorizontal, 0, _moveVertical) : new Vector3 (0, 0, 0);
+			GetEatInput = Input.GetButtonDown("Eat");
+		}
 
-	public Vector3 GetMovementInput
-	{
-		get{return movement;}
-	}
+		private void Update()
+		{
+			GetPauseInput = Input.GetButtonDown("Pause");
+		}
 
-	public bool GetEatInput
-	{
-		get{return eat;}
-	}
+		public Vector3 GetMovementInput { get; private set; }
 
-	public bool GetPauseInput
-	{
-		get{return pause;}
-	}
+		public bool GetEatInput { get; private set; }
 
-	public bool SwitchMovement
-	{
-		set
-		{ canMove = value; }
+		public bool GetPauseInput { get; private set; }
+
+		public bool SwitchMovement
+		{
+			set { _canMove = value; }
+		}
 	}
 }

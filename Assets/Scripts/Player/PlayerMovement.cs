@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+namespace Player
+{
+	public class PlayerMovement : MonoBehaviour {
 
-	private float speed = 5;
-	private Rigidbody rigidBody;
-
-	[SerializeField]
-	private AudioSource run;
-
-	[SerializeField]
-	private PlayerInputController playerInput;
-
-	void Start ()
-	{
-		rigidBody = GetComponent<Rigidbody> ();
-	}
+		[SerializeField] private float _speed = 5;
+		[SerializeField] private AudioSource _run;
+		[SerializeField] private PlayerInputController _playerInput;
+		private Rigidbody _rigidBody;
 		
-	void FixedUpdate ()
-	{
-		rigidBody.velocity = playerInput.GetMovementInput * speed;
-		if(playerInput.GetMovementInput !=  new Vector3(0,0,0) && run.isPlaying == false)
+		private void Start ()
 		{
-			run.Play ();
+			_rigidBody = GetComponent<Rigidbody> ();
+		}
+
+		private void FixedUpdate ()
+		{
+			_rigidBody.velocity = _playerInput.GetMovementInput * _speed;
+			if(_playerInput.GetMovementInput !=  new Vector3(0,0,0) && _run.isPlaying == false)
+			{
+				_run.Play ();
+			}
 		}
 	}
 }
