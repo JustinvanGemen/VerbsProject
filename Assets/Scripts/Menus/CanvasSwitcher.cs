@@ -18,11 +18,14 @@ namespace Menus
             }
         }
 
-        public void ScreenUpdate(GameObject menu) //function for enabling another canvas and disabling the others
+        public void ScreenUpdate(int menu) //function for enabling another canvas and disabling the others
         {
+            var nextCanvas = _menus[menu];
             foreach (var t in _menus)
             {
-                t.SetActive(t.name == menu.name);
+                if (t == null) return;
+                var canvasCheck = t == nextCanvas;
+                t.SetActive(canvasCheck);
             }
         }
     }

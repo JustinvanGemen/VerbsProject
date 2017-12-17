@@ -11,6 +11,15 @@ namespace Player
 		[SerializeField] private AddAndRemoveScores _addRemoveScore;
 		private string _food;
 		[SerializeField] private AudioSource _eat;
+		
+		private Material _material;
+		[SerializeField] private float _calories;
+
+		private void Start()
+		{
+			print(gameObject);
+			_material = gameObject.GetComponentInChildren<Renderer>().material;
+		}
 
 		private void OnTriggerStay (Collider other)
 		{
@@ -23,30 +32,32 @@ namespace Player
 				case "Banana":
 					_addRemoveScore.Score = -15;
 					break;
-				case"DragonFruit":
+				case "DragonFruit":
 					_addRemoveScore.Score = -5;
 					break;
-				case"Waffle":
+				case "Waffle":
 					_addRemoveScore.Score = 5;
 					break;
-				case"IceCream":
+				case "Ice Cream":
 					_addRemoveScore.Score = 15;
 					break;
-				case"Hamburger":
+				case "Hamburger":
 					_addRemoveScore.Score = 20;
 					break;
 			}
 			other.name = "Eaten";
 			_tempFood = other.gameObject;
-			StartCoroutine ("Eat");
+			StartCoroutine ("Eat", _tempFood);	//start function Eat
 		}
-		private IEnumerator Eat()
+		private IEnumerator Eat(Object food)
 		{
-			_eat.Play ();
-			_playerInput.SwitchMovement = false;
+			_eat.Play();		//play Sound
+			_playerInput.SwitchMovement = false;	//disable walking
+			var size = _material.GetFloat("_Amount") + _calories;
+			_material.SetFloat("_Amount", size);	//Set new size
 			yield return new WaitForSeconds (1f);
-			Destroy (_tempFood);
-			_playerInput.SwitchMovement = true;
+			Destroy (food);
+			_playerInput.SwitchMovement = true;	//enable walking
 		}
 	}
 }

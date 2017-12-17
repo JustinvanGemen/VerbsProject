@@ -24,7 +24,15 @@ namespace Database
 			_textData = _dataInformation.text;
 
 			_highScores = _textData.Split(";"[0]);
-			_text.text = "1: " + _highScores[0] + "\n\n2: " + _highScores[1] + "\n\n3: " + _highScores[2] + "\n\n4: " + _highScores[3] + "\n\n5: " + _highScores[4];
+
+			var i = 1;
+			_text.text = "1: ";
+			foreach (var score in _highScores)
+			{
+				if (score == null || score == _highScores[5]) yield break;
+				_text.text += score + "\n\n" + i + " ";
+				i++;
+			}	
 		}
 
 		public void SearchScoreStart(InputField givenName){
@@ -33,12 +41,20 @@ namespace Database
 
 		private IEnumerator SearchScore(string givenName)
 		{
+			_text.text = "";
 			_dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
 			yield return _dataInformation;
 			_textData = _dataInformation.text;
 			_highScores = _textData.Split(";"[0]);
 			print(_textData);
-			_text.text = "1 : " + _highScores[0] + "\n\n" + "2: " + _highScores[1] + "\n\n" + "3: " + _highScores[2] + "\n\n" + "4: " + _highScores[3] + "\n\n" + "5: " + _highScores[4];
+		
+			var loopCount = Mathf.Min(_highScores.Length, 5);
+			for (var i = 0; i < loopCount; i++)
+			{
+				var score = _highScores[i];
+				if (score == "" ) yield break;
+				_text.text += (i + 1) + " " + score + "\n\n";
+			}
 		}
 	}
 }

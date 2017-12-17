@@ -9,12 +9,11 @@ namespace UI
 
 		[SerializeField] private GameObject[] _countDownNumbers;
 		[SerializeField] private PlayerInputController _playerInput;
-		[SerializeField] private EnemyMovement _enemyInput;
 
-		private void Start () {
+		private void Start ()  
+		{
 			StartCoroutine (CountDownCounter());
 			_playerInput.SwitchMovement = false;
-			_enemyInput.SwitchMovement = false;
 		}
 
 		private IEnumerator CountDownCounter()
@@ -26,7 +25,6 @@ namespace UI
 				t.SetActive(false);
 			}
 			_playerInput.SwitchMovement = true;
-			_enemyInput.SwitchMovement = true;
 			StopCoroutine (CountDownCounter ());
 		}
 	}

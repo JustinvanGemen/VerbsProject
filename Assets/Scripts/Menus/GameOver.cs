@@ -6,7 +6,7 @@ namespace Menus
 	public class GameOver : MonoBehaviour
 	{
 		[SerializeField] private string _scriptHolder;
-		private GameObject _gameOverCanvas;
+		[SerializeField] private int _gameOverCanvas;
 		private CanvasSwitcher _changeMenu;
 		private AddAndRemoveScores _removeScore;
 	
@@ -17,7 +17,7 @@ namespace Menus
 			var tempObject = GameObject.Find(_scriptHolder);
 			_changeMenu = tempObject.GetComponent<CanvasSwitcher>();
 			_removeScore = tempObject.GetComponent<AddAndRemoveScores>();
-			_gameOverCanvas = GameObject.Find("InputScreen");
+			_gameOverCanvas = 2;
 		}
 		
 		private void OnTriggerEnter (Collider other)

@@ -15,7 +15,6 @@ namespace Player
 
 		private void FixedUpdate()
 		{
-			_canMove = true;
 			_moveHorizontal = Input.GetAxis ("Horizontal");
 			_moveVertical = Input.GetAxis ("Vertical");
 

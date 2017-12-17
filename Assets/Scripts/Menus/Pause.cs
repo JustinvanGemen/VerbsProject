@@ -6,7 +6,7 @@ namespace Menus
 	public class Pause : MonoBehaviour {
 
 		private CanvasSwitcher _canvasSwitcher;  //import menuscript.
-		private GameObject _enabledCanvas;
+		private int _enabledCanvas;
 
 		[SerializeField] private PlayerInputController _playerInput;
 
@@ -28,14 +28,14 @@ namespace Menus
 			if (Time.timeScale == 0) 
 			{
 				Time.timeScale = 1;  //set the timeScale to 1 (turn it back to normal speed)
-				_enabledCanvas = _canvasSwitcher.GetCanvas(0); // make a new var for the ui canvas.
+				_enabledCanvas = 0; // make a new var for the ui canvas.
 				_canvasSwitcher.ScreenUpdate(_enabledCanvas); // turn the normal game UI back on.
 				AudioListener.pause = false;
 			}
 			else if (Time.timeScale == 1)
 			{
 				Time.timeScale = 0; //pause the game.
-				_enabledCanvas = _canvasSwitcher.GetCanvas(1); //make a new var for the pause menu.
+				_enabledCanvas = 1; //make a new var for the pause menu.
 				_canvasSwitcher.ScreenUpdate(_enabledCanvas); //enable the pause menu, disable the game UI.
 				AudioListener.pause = true;
 			}
