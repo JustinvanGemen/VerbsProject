@@ -19,7 +19,7 @@ namespace Database
 
 		private IEnumerator HighscoreDisplay()
 		{
-			_dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/");
+			_dataInformation = new WWW("http://jvdwijk.com/Games/ESR/");
 			yield return _dataInformation;
 			_textData = _dataInformation.text;
 
@@ -42,7 +42,7 @@ namespace Database
 		private IEnumerator SearchScore(string givenName)
 		{
 			_text.text = "";
-			_dataInformation = new WWW("http://jvdwijk.com/Games/Verbs/search.php?" + "Name=" + givenName);
+			_dataInformation = new WWW("http://jvdwijk.com/Games/ESR/search.php?" + "Name=" + givenName);
 			yield return _dataInformation;
 			_textData = _dataInformation.text;
 			_highScores = _textData.Split(";"[0]);
