@@ -9,8 +9,13 @@ namespace Menus
 		[SerializeField] private int _gameOverCanvas;
 		private CanvasSwitcher _changeMenu;
 		private AddAndRemoveScores _removeScore;
-	
 		private int _tempScore;
+		private bool _gameOver;
+
+		public bool GameDone
+		{
+			get { return _gameOver; }
+		}
 
 		private void Start()
 		{
@@ -25,8 +30,9 @@ namespace Menus
 			if (!other.CompareTag("Player")) return;
 			if(gameObject.CompareTag("Enemy"))
 			{
+				_gameOver = true;
 				_tempScore = _removeScore.Score;
-				_tempScore /= 3;
+				_tempScore /= 2;
 				_removeScore.Score = -_tempScore;
 			}
 			_changeMenu.ScreenUpdate(_gameOverCanvas);
