@@ -7,7 +7,8 @@ namespace Menus
 
 		private CanvasSwitcher _canvasSwitcher;  //import menuscript.
 		private int _enabledCanvas;
-
+		private GameOver _gameDone;
+		
 		[SerializeField] private PlayerInputController _playerInput;
 
 		private void Start()
@@ -16,11 +17,10 @@ namespace Menus
 			_canvasSwitcher = GetComponent<CanvasSwitcher>();  //instantiate menuscript.
 		}
 
-		private void Update () {
-			if (_playerInput.GetPauseInput) //wait till keycode p or escape gets pressed then do the Paused() function.
-			{
-				Paused();
-			} 
+		private void Update ()
+		{
+			if (!_playerInput.GetPauseInput) return;
+			if (_gameDone.GameDone) Paused();
 		}
 
 		public void Paused()  //test what the timeScale is, if it is 0 go to the first function, if its 1 go to the 2nd.
