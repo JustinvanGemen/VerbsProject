@@ -2,13 +2,14 @@
 using Enemy;
 using Player;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace UI
 {
 	public class CountDown : MonoBehaviour {
 
 		[SerializeField] private GameObject[] _countDownNumbers;
-		[SerializeField] private PlayerInputController _playerInput;
+		[SerializeField] private ThirdPersonUserControl _playerInput;
 
 		private void Start ()  
 		{

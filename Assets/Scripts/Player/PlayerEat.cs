@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using Database;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace Player
 {
 	public class PlayerEat : MonoBehaviour {
 
-		[SerializeField] private PlayerInputController _playerInput;
+		[SerializeField] private ThirdPersonUserControl _playerInput;
 		private GameObject _tempFood;
 		[SerializeField] private AddAndRemoveScores _addRemoveScore;
 		private string _food;
@@ -23,7 +24,7 @@ namespace Player
 
 		private void OnTriggerStay (Collider other)
 		{
-			if (!_playerInput.GetEatInput || !other.CompareTag("Food")) return;
+			if (!Input.GetButtonDown("Eat") || !other.CompareTag("Food")) return;
 			switch (other.name)
 			{
 				case "Cake":
@@ -55,7 +56,7 @@ namespace Player
 			_playerInput.SwitchMovement = false;	//disable walking
 			var size = _material.GetFloat("_Amount") + _calories;
 			_material.SetFloat("_Amount", size);	//Set new size
-			yield return new WaitForSeconds (1f);
+			yield return new WaitForSeconds (0.35f);
 			Destroy (food);
 			_playerInput.SwitchMovement = true;	//enable walking
 		}

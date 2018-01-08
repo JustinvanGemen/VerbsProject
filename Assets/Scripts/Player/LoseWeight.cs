@@ -16,7 +16,6 @@ namespace Player
 		{
 			var size = _material.GetFloat("_Amount") + _burntCalories;
 			if (size < -0.03f) return;
-			print(size);
 			_material.SetFloat("_Amount", size);
 		}
 	}
